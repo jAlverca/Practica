@@ -1,0 +1,181 @@
+{% extends 'template.html' %}
+
+{% block content %}
+
+<main class="text-white p-5 mt-5">
+    <h1 class="h1 text-center mb-5">Lista de Usuarios</h1>
+    <div class="container">
+        <div class="row justify-content-center">
+            <form class="custom-form booking-form" action="#" method="post" role="form" id="formulario">
+                <div class="row-sm-2 mb-4 text-end mx-1">
+                </div>
+                <div class="booking-form-body">
+                    <div class="row">
+                        <div class="booking-form-body">
+                            <a href="/redireccionar" class="btn btn-danger">Agregar Usuarios</a>
+                            <form id="form" class="custom-form booking-form" action="/redireccionar" method="post"
+                                role="form">
+                                <div class="booking-form-body">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="sorting-section mb-3">
+                <label for="sorting-method" class="text-white">Ordenar por:</label>
+                <select id="sorting-method" class="form-control" style="width: 200px; display: inline-block;">
+                    <option selected value="quickSort">Quick Sort</option>
+                    <option value="mergeSort">Merge Sort</option>
+                    <option value="shellSort">Shell sort</option>
+                </select>
+            </div>
+
+            <div class="search-section mb-3">
+                <label for="search-field" class="text-white">Buscar:</label>
+                <input type="text" id="search-field" class="form-control" placeholder="Ingresa el término de búsqueda"
+                    style="width: 200px; display: inline-block;">
+                <select id="search-attr" class="form-control" style="width: 200px; display: inline-block;">
+                    <option value="nombre">Nombre</option>
+                    <option value="apellido">Apellido</option>
+                    <option value="telefono">Telefono</option>
+                </select>
+                <button class="btn btn-primary search-button">Buscar</button>
+            </div>
+
+            <table class="table table-striped table-bordered text-white">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">Nombre <button class="btn btn-sm btn-outline-secondary sort-button"
+                                data-sort-field="nombre" data-sort-order="asc">Sort</button></th>
+                        <th scope="col">Apellido <button class="btn btn-sm btn-outline-secondary sort-button"
+                                data-sort-field="apellido" data-sort-order="asc">Sort</button></th>
+                        <th scope="col">Telefono <button class="btn btn-sm btn-outline-secondary sort-button"
+                                data-sort-field="telefono" data-sort-order="asc">Sort</button></th>
+                        <th scope="col">Comandos</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for valor in lista %}
+                    <tr class="text-white">
+                        <td class="text-white">{{ valor.nombre }}</td>
+                        <td class="text-white">{{ valor.apellido }}</td>
+                        <td class="text-white">{{ valor.telefono }}</td>
+                        <td class="text-white">
+                            <a href="{{ url_for('router.guardarComandos', id=valor.id)}}" class="btn btn-warning">Ver
+                                Comandos</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.querySelectorAll('.sort-button').forEach(button => {
+        button.addEventListener('click', function () {
+            const sortField = this.getAttribute('data-sort-field');
+            let sortOrder = this.getAttribute('data-sort-order');
+            const sortMethod = document.getElementById('sorting-method').value;
+
+    
+            sortOrder = (sortOrder === 'asc') ? 'desc' : 'asc';
+            this.setAttribute('data-sort-order', sortOrder);
+
+            const data = {
+                sortField: sortField,
+                sortOrder: sortOrder,
+                sortMethod: sortMethod
+            };
+
+            fetch('/ordenarUsuarios', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const tbody = document.querySelector('tbody');
+                    tbody.innerHTML = '';
+                    data.forEach(usuario => {
+                        tbody.innerHTML += `
+                        <tr class="text-white">
+                            <td class="text-white">${usuario.nombre}</td>
+                            <td class="text-white">${usuario.apellido}</td>
+                            <td class="text-white">${usuario.telefono}</td>
+                            <td class="text-white">
+                                <a href="/guardarComandos/${usuario.id}" class="btn btn-warning">Ver Comandos</a>
+                            </td>
+                        </tr>
+                    `;
+                    });
+                })
+                .catch(error => {
+                    console.error('There was a problem with your fetch operation:', error);
+                });
+        });
+    });
+    
+    document.querySelector('.search-button').addEventListener('click', function () {
+        const searchField = document.getElementById('search-field').value;
+        const searchAttr = document.getElementById('search-attr').value;
+        const data = {
+            searchField: searchField,
+            searchAttr: searchAttr
+        };
+        console.log(data);
+        
+
+
+    fetch('/buscarUsuarios', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            const tbody = document.querySelector('tbody');
+            tbody.innerHTML = '';
+            data.forEach(usuario => {
+                tbody.innerHTML += `
+                    <tr class="text-white">
+                        <td class="text-white">${usuario.nombre}</td>
+                        <td class="text-white">${usuario.apellido}</td>
+                        <td class="text-white">${usuario.telefono}</td>
+                        <td class="text-white">
+                            <a href="/guardarComandos/${usuario.id}" class="btn btn-warning">Ver Comandos</a>
+                        </td>
+                    </tr>
+                `;
+            });
+        })
+        .catch(error => {
+            console.error('There was a problem with your fetch operation:', error);
+        });
+    });
+</script>
+
+{% endblock %}

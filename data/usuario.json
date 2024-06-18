@@ -1,0 +1,98 @@
+[
+    {
+        "nombre": "Juan",
+        "apellido": "Alverca",
+        "id": 0,
+        "telefono": "0917649327"
+    },
+    {
+        "nombre": "Pedro",
+        "apellido": "Perez",
+        "id": 1,
+        "telefono": "0961482746"
+    },
+    {
+        "nombre": "Diego",
+        "apellido": "Alverca",
+        "id": 2,
+        "telefono": "0968295535"
+    },
+    {
+        "nombre": "Jose",
+        "apellido": "Gomez",
+        "id": 3,
+        "telefono": "0971212123"
+    },
+    {
+        "nombre": "Damian",
+        "apellido": "Rodriguez",
+        "id": 4,
+        "telefono": "0948731524"
+    },
+    {
+        "nombre": "Luis",
+        "apellido": "Beltran",
+        "id": 5,
+        "telefono": "0957647328"
+    },
+    {
+        "nombre": "Genisis",
+        "apellido": "Chamba",
+        "id": 6,
+        "telefono": "0975835894"
+    },
+    {
+        "nombre": "Jeri",
+        "apellido": "Apolo",
+        "id": 7,
+        "telefono": "0957486325"
+    },
+    {
+        "nombre": "Herman",
+        "apellido": "Espinoza",
+        "id": 8,
+        "telefono": "0957463572"
+    },
+    {
+        "nombre": "Fernando",
+        "apellido": "Balcazar",
+        "id": 9,
+        "telefono": "0967584536"
+    },
+    {
+        "nombre": "Damian",
+        "apellido": "Maldonado",
+        "id": 10,
+        "telefono": "0975462314"
+    },
+    {
+        "nombre": "Carlos",
+        "apellido": "Medina",
+        "id": 11,
+        "telefono": "0956478665"
+    },
+    {
+        "nombre": "Maria",
+        "apellido": "Rey",
+        "id": 12,
+        "telefono": "0965213447"
+    },
+    {
+        "nombre": "Salome",
+        "apellido": "Velazques",
+        "id": 13,
+        "telefono": "0965875647"
+    },
+    {
+        "nombre": "Alan",
+        "apellido": "Zambrano",
+        "id": 14,
+        "telefono": "0991287353"
+    },
+    {
+        "nombre": "Juan",
+        "apellido": "Perez",
+        "id": 15,
+        "telefono": "0965478316"
+    }
+]

@@ -1,0 +1,32 @@
+[
+    {
+        "id": 0,
+        "id_usuario": 0,
+        "contenido": "qwe",
+        "fecha": "2024-06-15"
+    },
+    {
+        "id": 1,
+        "id_usuario": 0,
+        "contenido": "rtrt",
+        "fecha": "2024-05-29"
+    },
+    {
+        "id": 2,
+        "id_usuario": 0,
+        "contenido": "qwe",
+        "fecha": "2024-06-13"
+    },
+    {
+        "id": 3,
+        "id_usuario": 0,
+        "contenido": "rere",
+        "fecha": "2024-06-14"
+    },
+    {
+        "id": 4,
+        "id_usuario": 1,
+        "contenido": "dfdf",
+        "fecha": "2024-06-06"
+    }
+]

@@ -1,0 +1,51 @@
+{% extends 'template.html' %}
+
+{% block content %}
+
+<main class=" text-white p-5 mt-5">
+    <h1 class="h1 text-center mb-5">Lista de Comandos</h1>
+    <div class="container">
+        <div class="row justify-content-center">
+            <form class="custom-form booking-form" action="/guardarComandos/{{id}}" method="post" role="form" id="formulario">
+                <div class="row-sm-2 mb-4 text-end mx-1">
+                    <input name ="contenido" class="form-group" type="text" placeholder="Comando">
+                    <input name="fecha" class="form-group" type="date" placeholder="Fecha">
+                </div>
+                <div class="booking-form-body">
+                    <div class="row">
+                        <div class="booking-form-body">
+                            <button class="btn btn-info" type="submit" >
+                                Agregar Comando
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <table class="table table-striped table-bordered text-white">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">Nr</th>
+                        <th scope="col">Comando</th>
+                        <th scope="col">Fecha</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for valor in lista %}
+                    <tr class="text-white">
+                        <td class="text-white">{{loop.index}}</td>
+                        <td class="text-white">{{ valor.contenido }}</td>
+                        <td class="text-white">{{ valor.fecha }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
