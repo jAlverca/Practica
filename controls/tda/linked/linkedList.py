@@ -415,28 +415,25 @@ class LinkedList(object):
             return None
     #FIN DEL METODO BUSQUEDA BINARIA
 
-    #METODO BUSQUEDA LINEAL
-    def lineal(self, attribute, value):
+    #METODO BUSQUEDA BINARIA PARA NUMEROS
+    def binariaNumber(self, value):
         if self.isEmpty:
             raise Exception("Error, lista vacía")
         else:
-            for i in range(self._length):
-                if getattr(self.get(i), attribute) == value:
-                    return self.get(i)
+            self.quickNumber()
+            array = self.toArray
+            low = 0
+            high = len(array) - 1
+            while low <= high:
+                mid = (low + high) // 2
+                if array[mid] == value:
+                    return array[mid]
+                elif array[mid] < value:
+                    low = mid + 1
+                else:
+                    high = mid - 1
             return None
-    #FIN DEL METODO BUSQUEDA LINEAL
-
-    #METODO BUSQUEDA LINEAL PARA NUMEROS
-    def linealNumber(self, value):
-        if self.isEmpty:
-            raise Exception("Error, lista vacía")
-        else:
-            for i in range(self._length):
-                if self.get(i) == value:
-                    return self.get(i)
-            return None
-    #FIN DEL METODO BUSQUEDA LINEAL PARA NUMEROS
-            
+                
     #BUSQUEDA LINEAL BINARIA
     def linealBinaria(self, attribute, value):
         if self.isEmpty:
